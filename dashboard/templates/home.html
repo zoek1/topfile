@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Habilita metamask para ver tus archivos
+
+<script src="https://unpkg.com/3box/dist/3box.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.34/dist/web3.min.js"></script>
+<script>
+    async function get_profile() {
+        // require access to web3
+        // web3 = new Web3(window.ethereum);
+        var web3 = new Web3(window.ethereum || "mainnet.infura.io/v3/{{ INFURA_PROJECT }}");
+
+        window.ethereum.enable().then(async enable => {
+            var account = web3.eth.accounts[0]
+            const profile = await Box.getProfile(account)
+        })
+    }
+    get_profile();
+</script>
+</body>
+</html>
